@@ -8,7 +8,7 @@ This is a local project that includes:
 - Voice input for questions and TTS for answers
 
 How to run:
-1. unzip and open terminal in project folder
-2. npm install
-3. node server.js
-4. open http://localhost:5000 (or other port displayed)
+1. npm install
+2. node server.js
+3. open http://localhost:5000 (or other port displayed)
+
