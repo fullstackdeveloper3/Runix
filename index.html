@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Runix — CodeTalk</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/monaco-editor@0.34.1/min/vs/loader.js"></script>
+    <head>
+    <script src="https://unpkg.com/monaco-editor@0.34.1/min/vs/loader.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="brand">Runix</div>
+      <div class="controls">
+     <select id="langSelect">
+          <option value="javascript">JavaScript</option>
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+          <option value="python">Python</option>
+          <option value="cpp">C++</option>
+        </select>
+    </select>
+  <input id="filename" placeholder="project" value="project" />
+  
+  <button id="openBtn">Open File</button>
+  
+  <button id="runBtn">Run Code</button>
+ 
+  <button id="downloadBtn">Download</button>
+  <button id="saveBtn">Save</button>
+
+  <input type="file" id="fileInput" style="display: none;" />
+</div>
+    </div>
+
+    <div class="main">
+      <div class="left">
+        <div id="editor" class="editor"></div>
+        <div class="bottom-bar"></div>
+      </div>
+
+      <div class="right">
+        <div class="assistant-header">
+          <div>AI Assistant</div>
+        </div>
+        <div id="chat" class="chat"></div>
+        <div class="chat-input">
+          <input id="userQuestion" placeholder="Ask about your code " />
+
+          <button id="askBtn">Ask</button>
+          <button class="micor" id="micBtn"><i class="fa-solid fa-microphone"></i></button>
+          
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          />
+        </div>
+        <div class="console-area">
+          <div class="console-header">Console Output</div>
+          <pre id="consoleOutput"></pre>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
