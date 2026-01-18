@@ -1,0 +1,414 @@
+:root {
+  --bg1: #0f0b1a;
+  --bg2: #1a0337;
+  --accent1: #7b2ff7;
+  --accent2: #ff4d6d;
+  --panel: #0b0f1a;
+  --muted: #9aa4b2;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto;
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  color: #e6eef8;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(0, 0, 0, 0.05)
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.brand {
+  font-weight: 700;
+  font-size: 23px;
+  color: white;
+  background: linear-gradient(57deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.controls select,
+input,
+button {
+  padding: 8px;
+  border-radius: 8px;
+  border: 0;
+  font-size: 14px;
+}
+.controls select,
+.controls input {
+  background: #0b1020;
+  color: #e6eef8;
+}
+.controls button {
+  background: linear-gradient(90deg, var(--accent1), #9a3ff0);
+  color: white;
+  cursor: pointer;
+}
+
+/* Add this to your existing CSS */
+body.light-mode {
+  --bg1: #f0f2f5;
+  --bg2: #ffffff;
+  --panel: #e1e4e8;
+  --muted: #586069;
+  color: #24292e;
+}
+/* Update editor container to handle light mode contrast if needed */
+body.light-mode .editor {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  gap: 18px;
+  overflow: hidden; 
+}
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: calc(100vh - 82px); 
+}
+.editor {
+  height: 100%; 
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+}
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  color: var(--muted);
+}
+.right {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 82px);
+  gap: 10px;
+}
+.assistant-header {
+  padding: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(0, 0, 0, 0.02)
+  );
+  border-radius: 8px;
+  font-weight: 600;
+}.chat {
+  flex: 1;
+  background: linear-gradient(
+    180deg,
+    rgb(47, 38, 38),
+    rgb(38, 35, 35)
+  );
+  border-radius: 8px;
+  padding: 12px;
+  overflow-y: auto;
+ 
+}
+.chat::-webkit-scrollbar{
+  background-color: #190335;
+}
+.chat::-webkit-scrollbar-thumb{
+  background-image: linear-gradient(0deg, #7b2ff7, #ff4d6d);
+  border-radius: 12px;
+}
+.chat .msg {
+  margin-bottom: 12px;
+  padding: 10px;
+  overflow-wrap: break-word;
+  border-radius: 8px;
+}
+.chat .user {
+  background: rgba(255, 255, 255, 0.06);
+  align-self: flex-end;
+}
+.chat .ai {
+  background: linear-gradient(90deg, #1b0b2d, #2b0f3e);
+  color: #fff;
+}
+.chat-input {
+  display: flex;
+  gap: 8px;
+}
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 0;
+  background: #071024;
+  color: #e6eef8;
+}
+.console-area {
+  height: 160px; flex-shrink: 0; 
+  margin-top: 8px;
+  background: #02030a;
+  padding: 10px;
+  border-radius: 8px;
+  color: #9fb0d1;
+  overflow: auto;
+}
+.console-header {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+#consoleOutput {
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 13px;
+  color: #9fb0d1;
+}
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: #1e1e1e;
+  color: white;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background-color: #8c1d1d;
+  transform: scale(1.05);
+}
+
+.icon-btn.listening {
+  color: #00ffcc;
+  box-shadow: 0 0 12px #00ffcc;
+}
+.micor {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-image: linear-gradient(180deg, #ff4d6d, #7b2ff7);
+}
+.micor i {
+  font-size: 23px;
+  color: #ffffff;
+}
+#langSelect {
+  box-shadow: 0 0 5px #5e2aa6;
+}
+.assistant-header {
+  display: flex;
+  justify-content: center;
+  font-size: 19px;
+}
+#askBtn {
+  background-image: linear-gradient(90deg, #7b2ff7, #ff4d6d);
+  color: white;
+  
+}
+
+.monaco-editor .suggest-widget .monaco-list .monaco-list-row .suggest-icon{
+  height: 14px;
+}
+
+.monaco-menu {
+    background-color: var(--darker); 
+    color: var(--textColor);
+    border: 1px solid var(--borderColor);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 77, 109, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 109, 0);
+  }
+}
+
+.micor.listening {
+  animation: pulse 1.3s infinite;
+  box-shadow: 0 0 5px var(--accent2), 0 0 10px var(--accent2);
+}
+/* Style for complexity buttons to make them distinct */
+#btnBigO, #btnOmega, #btnTheta {
+  font-family: 'Times New Roman', serif; /* Serif font looks better for math symbols */
+  font-weight: bold;
+  font-size: 16px;
+  min-width: 40px; /* Ensures they are easy to click */
+  background: linear-gradient(135deg, #2b0f3e, #7b2ff7); /* Slightly darker purple theme */
+}
+
+#btnBigO:hover, #btnOmega:hover, #btnTheta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(123, 47, 247, 0.4);
+}
+/* Style for the specific Complexity dropdown */
+#complexitySelect {
+  background: linear-gradient(90deg, #2b0f3e, #4a1a6b); /* Dark purple gradient */
+  color: #fff;
+  font-weight: bold;
+  border: 1px solid #7b2ff7;
+  cursor: pointer;
+  text-align: center;
+}
+
+#complexitySelect option {
+  background-color: #0f0b1a; /* Dark background for options */
+  color: #e6eef8;
+  text-align: left;
+}
+
+#complexitySelect:hover {
+  box-shadow: 0 0 8px rgba(123, 47, 247, 0.5); /* Glow effect on hover */
+}
+/* Update .left to handle resizing */
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: calc(100vh - 82px);
+  /* Ensure it doesn't overflow */
+  min-height: 0; 
+}
+
+/* Allow editor to shrink/grow */
+.editor {
+  flex: 1; 
+  min-height: 200px;
+  transition: flex 0.3s ease;
+}
+
+/* AST Visualizer Panel */
+.ast-panel {
+  height: 300px; /* Fixed height when open */
+  background: #0b0f1a;
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+  animation: slideUp 0.3s ease-out;
+}
+
+.ast-header {
+  background: linear-gradient(90deg, #1a0337, #0f0b1a);
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #9aa4b2;
+  border-bottom: 1px solid #2d3748;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ast-header button {
+  background: transparent;
+  color: #ff4d6d;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#astGraph {
+  flex: 1;
+  overflow: auto; /* Scroll if tree is huge */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes slideUp {
+  from { height: 0; opacity: 0; }
+  to { height: 300px; opacity: 1; }
+}
+/* Ensure the translation output handles long lines well */
+#translationOutput {
+  flex: 1;
+  background-color: #0d1117;
+  white-space: pre-wrap; /* Wrap text if it's too long */
+}
+/* Complexity Panel Layout */
+.complexity-grid {
+  display: flex;
+  flex: 1;
+  gap: 15px;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  background: #0d1117;
+}
+
+.comp-box {
+  flex: 1;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.comp-box:hover {
+  transform: translateY(-5px);
+  border-color: #7b2ff7;
+}
+
+.comp-label {
+  font-size: 13px;
+  color: #8b949e;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.comp-val {
+  font-family: 'Courier New', monospace;
+  font-size: 24px;
+  font-weight: bold;
+  color: #58a6ff; /* Blue math color */
+}
+
+/* Specific colors for each metric */
+.comp-box:nth-child(1) .comp-val { color: #ff7b72; } /* Red for Worst Case */
+.comp-box:nth-child(2) .comp-val { color: #7ee787; } /* Green for Best Case */
+.comp-box:nth-child(3) .comp-val { color: #d2a8ff; } /* Purple for Average */

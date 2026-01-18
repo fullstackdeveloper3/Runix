@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Runix — CodeTalk</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/monaco-editor@0.34.1/min/vs/loader.js"></script>
+    <head>
+    <script src="https://unpkg.com/monaco-editor@0.34.1/min/vs/loader.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+    </script>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="brand">Runix</div>
+        <div class="controls">
+            <select id="langSelect">
+                  <option value="javascript">JavaScript</option>
+                  <option value="html">HTML</option>
+                  <option value="css">CSS</option>
+                  <option value="python">Python</option>
+                  <option value="cpp">C++</option>
+            </select>
+          <input id="filename" placeholder="project" value="project" />
+                      
+          <button id="openBtn">Open File</button>
+
+          <button id="complexityReportBtn" title="Full Complexity Report" style="background: linear-gradient(90deg, #8E2DE2, #4A00E0);">
+            <i class="fa-solid fa-square-root-variable"></i> Complexity
+          </button>
+          <button id="formatBtn" title="Auto Format Code"><i class="fa-solid fa-align-left"></i> Format</button>
+          <button id="runBtn">Run Code</button>
+
+        
+          <button id="downloadBtn">Download</button>
+          <button id="saveBtn">Save</button>
+          <button id="astBtn" title="Generate AST" style="background: linear-gradient(90deg, #FF8C00, #FF0080);">
+            <i class="fa-solid fa-tree"></i> AST
+          </button>
+          <button id="translateBtn" title="Translate Code" style="background: linear-gradient(90deg, #36D1DC, #5B86E5);">
+            <i class="fa-solid fa-language"></i> Translate
+          </button>
+          <input type="file" id="fileInput" style="display: none;" />
+          <button id="themeToggle" class="icon-btn" title="Switch Theme">
+            <i class="fa-solid fa-palette"></i>
+          </button>
+        </div>
+    </div>
+
+    <div class="main">
+      <div class="left">
+        <div id="editor" class="editor"></div>
+      <div id="astVisualizer" class="ast-panel" style="display: none;">
+          <div class="ast-header">
+            <span>Abstract Syntax Tree</span>
+            <button id="closeAstBtn"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="mermaid" id="astGraph">
+            </div>
+      </div>
+      <div id="translatorPanel" class="ast-panel" style="display: none;">
+        <div class="ast-header">
+          <div style="display:flex; gap:10px; align-items:center;">
+            <span>Translate to:</span>
+            <select id="targetLang" style="background:#0b0f1a; color:white; border:1px solid #444; border-radius:4px;">
+              <option value="python">Python</option>
+              <option value="cpp">C++</option>
+              <option value="javascript">JavaScript</option>
+              <option value="java">Java</option>
+              <option value="c">C</option>
+              <option value="rust">Rust</option>
+              <option value="go">Go</option>
+            </select>
+            <button id="doTranslateBtn" style="font-size:12px; background:#5B86E5; color:white; padding:2px 8px; border-radius:4px;">Convert</button>
+          </div>
+          <button id="closeTranslateBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <pre id="translationOutput" style="padding:15px; margin:0; overflow:auto; color:#aaffaa; font-family:monospace; font-size:13px;"></pre>
+      </div>
+      <div id="complexityPanel" class="ast-panel" style="display: none;">
+        <div class="ast-header">
+          <span>Time Complexity Report</span>
+          <button id="closeComplexityBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="complexity-grid">
+          <div class="comp-box">
+            <div class="comp-label">Worst Case (Big O)</div>
+            <div id="resBigO" class="comp-val">...</div>
+          </div>
+          <div class="comp-box">
+            <div class="comp-label">Best Case (Omega)</div>
+            <div id="resOmega" class="comp-val">...</div>
+          </div>
+          <div class="comp-box">
+            <div class="comp-label">Average Case (Theta)</div>
+            <div id="resTheta" class="comp-val">...</div>
+          </div>
+        </div>
+      </div>
+        <div class="bottom-bar"></div>
+      </div>
+
+      <div class="right">
+        <div class="assistant-header">
+          <div>AI Assistant</div>
+        </div>
+        <div id="chat" class="chat"></div>
+        <div class="chat-input">
+          <input id="userQuestion" placeholder="Ask about your code " />
+
+          <button id="askBtn">Ask</button>
+          <button class="micor" id="micBtn"><i class="fa-solid fa-microphone"></i></button>
+          
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          />
+        </div>
+        <div class="console-area">
+          <div class="console-header">Console Output</div>
+          <pre id="consoleOutput"></pre>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
